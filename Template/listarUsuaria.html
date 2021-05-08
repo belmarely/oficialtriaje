@@ -1,0 +1,116 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="section">
+        <!-- Container-fluid starts -->
+        <div class="container">
+         <div class="text-center">
+             <img src="{% static 'assets/images/ciudadm.png' %}" alt="logo.png" width="150" height="110">
+         </div>
+        <div class="col-md-12">
+            <h3 class="text-center">Control de Usuarias</h3>
+        </div>
+        <br>
+            <div class="row">
+
+                <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <form method="get">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" class="form-control" placeholder="Ingrese Identidad" name="buscar" value="{{ request.GET.buscar }}">
+                                    <span class="input-group-list">
+                                        <i class="icon icon-search"></i>
+                                        <button type="submit" class="btn btn-dark">Buscar</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <a class="btn btn-dark col-md-3" href="{% url 'Usuaria' %}">Cancelar</a>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="card-block">
+                <div class="table-responsive">
+                    <table class="table table-hover m-b-0 without-header table-sm">
+                        <thead>
+                            <tr>
+                              <th scope="col">Nombre</th>
+                              <th scope="col">Apellido</th>
+                              <th scope="col">Identidad</th>
+                              <th scope="col">Celular</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for usuaria in usuarias %}
+                            <tr>
+                              <th scope="row">{{ usuaria.nombre }}</th>
+                              <td>{{ usuaria.apellido }}</td>
+                              <td>{{ usuaria.identidad }}</td>
+                              <td>{{ usuaria.celular }}</td>
+                        {% endfor %}
+                          </tbody>
+                    </table>
+                </div>
+                </div>
+                <div class="card-block">
+                  <div class="table-responsive">
+                    <table class="table table-hover m-b-0 without-header table-sm">
+                        <thead>
+                            <tr>
+                              <th scope="col">Identidad</th>
+                              <th scope="col">Hora</th>
+                              <th scope="col">Fecha</th>
+                              <th scope="col">Motivo de visita</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for entrada in entradas %}
+                            <tr>
+                              <th scope="row">{{ entrada.id_usuaria }}</th>
+                              <td>{{ entrada.hora }}</td>
+                              <td>{{ entrada.fecha }}</td>
+                              <td>{{ entrada.descripcion }}</td>
+                        {% endfor %}
+                          </tbody>
+                    </table>
+                </div>
+                </div>
+                <div class="card-block">
+                 <div class="table-responsive">
+                    <table class="table table-hover m-b-0 without-header table-sm">
+                        <thead>
+                            <tr>
+                              <th scope="col">Identidad</th>
+                              <th scope="col">Temperatura</th>
+                              <th scope="col">Sintomas</th>
+                              <th scope="col">Contacto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for diagnostico in diagnosticos %}
+                            <tr>
+                              <th scope="row">{{ diagnostico.id_usuaria }}</th>
+                              <td>{{ diagnostico.temperatura }}</td>
+                              <td>{{ diagnostico.sintomas }}</td>
+                              <td>{{ diagnostico.contacto }}</td>
+                        {% endfor %}
+                          </tbody>
+                    </table>
+                </div>
+                </div>
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+
+
+{% endblock %}

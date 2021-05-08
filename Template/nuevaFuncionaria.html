@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            This is a danger alert—check it out!
+        </div>
+    {% endif %}
+
+    <section class="section">
+        <!-- Container-fluid starts -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+
+                    <form action="{% url 'guardarFuncionaria' %}" method="post">
+
+                        {% csrf_token %}
+                        {% if mensaje %}
+                            <div class="alert alert-success" role="alert">
+                                Usuaria registrada exitosamente
+                            </div>
+                        {% endif %}
+
+                        <div class="text-center">
+                            <img src="{% static 'assets/images/ciudadm.png' %}" alt="logo.png" width="150" height="110">
+                        </div>
+
+                            <div class="auth-box card">
+                                <div class="card-block">
+                                    <div class="row m-b-20">
+                                        <div class="col-md-12">
+                                            <h3 class="text-center">Registro de Funcionarias</h3>
+                                        </div>
+                                    </div>
+                                    <br>
+                                   <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label>Nombre</label>
+                                            <input type="text" class="form-control form-control-lg" id="nombre" name="nombre" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label>Apellido</label>
+                                            <input type="text" class="form-control form-control-lg" id="apellido" name="apellido" required>
+                                        </div>
+                                   </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label>Identidad</label>
+                                            <input type="text" class="form-control form-control-lg" id="identidad" name="identidad" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label>Celular</label>
+                                            <input type="text" class="form-control form-control-lg" id="celular" name="celular" required>
+                                        </div>
+                                   </div>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label>Módulo</label>
+                                        <select id="id_modulo" name="id_modulo" class="browser-default custom-select">
+                                            <option selected="">Seleccione un módulo</option>
+                                            <option value="MSSR">MSSR</option>
+                                            <option value="MEC">MEC</option>
+                                            <option value="MAPRODEM">MAPRODEM</option>
+                                            <option value="MAA">MAA</option>
+                                            <option value="MAI">MAI</option>
+                                            <option value="MAE">MAI</option>
+                                            <option value="DN">DN</option>
+                                        </select>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                        <label>Identidad de funcionaria</label>
+                                        <input type="text" class="form-control form-control-lg" id="identidad_funcionaria" name="identidad_funcionaria" required>
+                                        </div>
+                                    </div>
+                                  <br>
+                                    <div class="row m-t-10">
+                                        <div class="col-md-6">
+                                            <a class="btn btn-secondary col-md-12" href="{% url 'Funcionaria' %}">Cancelar</a>
+                                        </div>
+                                         <div class="col-md-6">
+                                            <button type="submit" class="btn btn-success btn-md btn-block waves-effect waves-light text-center m-b-10">Agregar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                        <!-- end of form -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+
+{% endblock %}

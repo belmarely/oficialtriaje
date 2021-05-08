@@ -1,0 +1,177 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+        <img src="{% static 'assets/images/ciudadm.png' %}" alt="logo.png" width="150" height="110">
+    </div>
+     <div class="row m-b-20">
+         <div class="col-md-12">
+             <h3 class="text-center">Control de Funcionarias</h3>
+         </div>
+     </div>
+    <div class="container">
+    <div class="row d-flex justify-content-center">
+    <div class="col-xl-4 col-md-12">
+        <div class="card mat-clr-stat-card text-black white">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-3 text-center bg-c-black">
+                        <a href="{% url 'registrarFuncionaria' %}"><i class="fas fa-user-plus mat-icon f-24"></i></a>
+                    </div>
+                    <div class="col-9 cst-cont">
+                        <h5>Nueva Funcionaria</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="col-xl-4 col-md-12">
+        <div class="card mat-clr-stat-card text-black white">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-3 text-center bg-c-black">
+                        <a href="{% url 'registrarDiagnosticoFuncionaria' %}"><i class="fas fa-save mat-icon f-24"></i></a>
+                    </div>
+                    <div class="col-9 cst-cont">
+                        <h5>Ctrl de Bioseguridad</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="col-xl-4 col-md-12">
+        <div class="card mat-clr-stat-card text-black white">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-3 text-center bg-c-black">
+                        <a href="{% url 'listarFuncionaria' %}"><i class="fas fa-users mat-icon f-24"></i></a>
+                    </div>
+                    <div class="col-9 cst-cont">
+                        <h5>Reporte Funcionarias</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="col-xl-4 col-md-12">
+        <div class="card mat-clr-stat-card text-black white">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-3 text-center bg-c-black">
+                        <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-lock-open mat-icon f-24"></i></a>
+                    </div>
+                    <div class="col-9 cst-cont">
+                        <h5>Registro de Entrada</h5>
+                        <div>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Registro de Entrada Funcionarias</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="{% url 'guardarEntradaFuncionaria' %}" method="post">
+                                {% csrf_token %}
+                              <div class="form-group">
+                                <label class="col-form-label">Identidad:</label>
+                                <input type="text" class="form-control" id="id_funcionaria" name="id_funcionaria">
+                              </div>
+                                <div class="form-group">
+                                <label class="col-form-label">Hora de entrada:</label>
+                                <input type="time" class="form-control" id="hora" name="hora">
+                              </div>
+                                <div class="form-group">
+                                <label class="col-form-label">Fecha:</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha">
+                              </div>
+                                <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                          </div>
+                            </form>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="col-xl-4 col-md-12">
+        <div class="card mat-clr-stat-card text-black white">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-3 text-center bg-c-black">
+                         <a data-toggle="modal" data-target="#exampleModalCenter">
+                        <i class="fas fa-close mat-icon f-24"></i>
+                    </a>
+                    </div>
+                    <div class="col-9 cst-cont">
+                        <h5>Registro de Salida</h5>
+                        <div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Registro de Salida Funcionaria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form action="{% url 'guardarSalidaFuncionaria' %}" method="post">
+                                    {% csrf_token %}
+                              <div class="form-group">
+                                <label class="col-form-label">Identidad:</label>
+                                <input type="text" class="form-control" id="id_funcionaria" name="id_funcionaria">
+                              </div>
+                                <div class="form-group">
+                                <label class="col-form-label">Hora de entrada:</label>
+                                <input type="time" class="form-control" id="hora" name="hora">
+                                 </div>
+                                <div class="form-group">
+                                <label class="col-form-label">Fecha:</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha">
+                                </div>
+                                    <div>
+                                        <h6>1. Temperatura</h6>
+                                        <div class="row">
+                                        <div class="col-md-6 form-group">
+                                        <select id="temperatura1" name="temperatura1" class="browser-default custom-select">
+                                            <option selected="">Seleccione una opción</option>
+                                            <option value="Mayor 37.5ºC">Mayor o igual a 37.5ºC</option>
+                                            <option value="Menor 37.5ºC">Menor o igual a 37.5ºC</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

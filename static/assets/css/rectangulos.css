@@ -1,0 +1,48 @@
+.rectangulo {
+     width: 228px;
+     height: 30px;
+     background: #E76100;
+}
+
+.rectangulo1 {
+     width: 228px;
+     height: 30px;
+     background: #00652E;
+}
+
+.rectangulo2 {
+     width: 228px;
+     height: 30px;
+     background: #910281;
+}
+
+.rectangulo3 {
+     width: 228px;
+     height: 30px;
+     background: #E8C600;
+}
+
+.rectanguloo {
+     width: 228px;
+     height: 100px;
+     background: #428bca;
+}
+
+.rectangulo5 {
+     width: 228px;
+     height: 30px;
+     background: #DB0080;
+}
+
+.rectangulo4 {
+     width: 228px;
+     height: 30px;
+     background: #001781;
+}
+@media all and (max-width: 400px) {
+     .square{
+          width: 100%;
+          height: auto;
+          margin-left: 10px;
+     }
+}
