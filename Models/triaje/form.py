@@ -1,8 +1,23 @@
+import self as self
 from django import forms
 from Models.triaje.models import Usuaria, Funcionaria, Diagnostico, Entrada, Salida
+from django.forms import ValidationError
 
 
 class formularioUsuaria(forms.ModelForm):
+
+    nombre = forms.CharField(min_length=3, max_length=100)
+    apellido = forms.CharField(min_length=3, max_length=100)
+    identidad = forms.CharField(min_length=13, max_length=15)
+
+    def clean_identidad(self):
+        identidad = self.cleaned_data['identidad']
+        existe = Usuaria.objects.filter(identidad__iexact=identidad).exists()
+
+        if existe:
+            raise ValidationError('Ya existe número de indentidad')
+        return identidad
+
     class Meta:
         model = Usuaria
         fields = ('nombre', 'apellido', 'identidad', 'celular', 'identidad_funcionaria',)
@@ -10,6 +25,18 @@ class formularioUsuaria(forms.ModelForm):
 
 # MODELO Agregar funcionaria
 class formularioFuncionaria(forms.ModelForm):
+    nombre = forms.CharField(min_length=3, max_length=100)
+    apellido = forms.CharField(min_length=3, max_length=100)
+    identidad = forms.CharField(min_length=13, max_length=15)
+
+    def clean_identidad(self):
+        identidad = self.cleaned_data['identidad']
+        existe = Usuaria.objects.filter(identidad__iexact=identidad).exists()
+
+        if existe:
+            raise ValidationError('Identidad de Usuaria existente')
+        return identidad
+
     class Meta:
         model = Funcionaria
         fields = ('nombre', 'apellido', 'identidad', 'celular', 'id_modulo', 'identidad_funcionaria',)

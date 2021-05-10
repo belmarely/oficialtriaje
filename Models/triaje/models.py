@@ -1,18 +1,21 @@
 from django.db import models
 
+
 class Usuaria(models.Model):
     identidad = models.CharField(max_length=15, primary_key=True)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    celular = models.CharField(max_length=12, null=True,)
+    celular = models.CharField(max_length=12, null=True, )
     identidad_funcionaria = models.CharField(max_length=13, default=None)
 
+    def __str__(self):
+        return self.identidad
 
 class Funcionaria(models.Model):
     identidad = models.CharField(max_length=15, primary_key=True)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    celular = models.CharField(max_length=12, null=True,)
+    celular = models.CharField(max_length=12, null=True, )
     modulo_choices = (
         ('MSSR', 'MSSR'),
         ('MEC', 'MEC'),
@@ -24,6 +27,9 @@ class Funcionaria(models.Model):
     )
     id_modulo = models.CharField(max_length=20, choices=modulo_choices)
     identidad_funcionaria = models.CharField(max_length=13, default=None)
+
+    def __str__(self):
+        return self.identidad
 
 
 class Entrada(models.Model):
@@ -61,4 +67,3 @@ class Diagnostico(models.Model):
     temperatura = models.CharField(max_length=30, choices=temperatura_choices)
     sintomas = models.CharField(max_length=500, default=None)
     contacto = models.CharField(max_length=100, choices=contacto_choices)
-

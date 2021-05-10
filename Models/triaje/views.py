@@ -22,6 +22,7 @@ class formularioUsuariaView(HttpRequest):
 
         return render(request, "usuaria.html", {'form': usuaria, 'mensaje': 'Ok'})
 
+
     # TRAER DATOS
     def listarUsuarias(request):
         queryset = request.GET.get("buscar")
